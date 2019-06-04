@@ -56,16 +56,27 @@ module.exports = (env, argv) => ({
 	},
 
 	// Tells Webpack to generate "ui.html" and to inline "ui.ts" into it
-	plugins: [
-		new RemovePlugin({
-			after: { include: ['dist/ui.js'] }
-		}),
-		new HtmlWebpackPlugin({
-			template: './src/ui.pug',
-			filename: 'ui.html',
-			inlineSource: '.(js|css|scss)$',
-			chunks: ['ui']
-		}),
-		new HtmlWebpackInlineSourcePlugin()
-	]
+	plugins:
+		argv.mode === 'production'
+			? [
+					new RemovePlugin({
+						after: { include: ['dist/ui.js'] }
+					}),
+					new HtmlWebpackPlugin({
+						template: './src/ui.pug',
+						filename: 'ui.html',
+						inlineSource: '.(js|css|scss)$',
+						chunks: ['ui']
+					}),
+					new HtmlWebpackInlineSourcePlugin()
+			  ]
+			: [
+					new HtmlWebpackPlugin({
+						template: './src/ui.pug',
+						filename: 'ui.html',
+						inlineSource: '.(js|css|scss)$',
+						chunks: ['ui']
+					}),
+					new HtmlWebpackInlineSourcePlugin()
+			  ]
 });
