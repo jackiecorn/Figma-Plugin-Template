@@ -37,6 +37,11 @@ module.exports = (env, argv) => ({
 				]
 			},
 
+			{
+				test: /\.pug$/,
+				use: ['pug-loader']
+			},
+
 			// Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
 			{ test: /\.(png|jpg|gif|webp|svg)$/, loader: [{ loader: 'url-loader' }] }
 		]
@@ -56,7 +61,7 @@ module.exports = (env, argv) => ({
 			after: { include: ['dist/ui.js'] }
 		}),
 		new HtmlWebpackPlugin({
-			template: './src/ui.html',
+			template: './src/ui.pug',
 			filename: 'ui.html',
 			inlineSource: '.(js|css|scss)$',
 			chunks: ['ui']
