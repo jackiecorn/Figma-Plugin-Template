@@ -1,5 +1,5 @@
 import { dispatch, handleEvent } from './uiMessageHandler';
 import './ui.scss';
-import './figma-ui/selectMenu';
-import './figma-ui/iconInput';
-import './figma-ui/disclosure';
+import './figma-ui/js/selectMenu';
+import './figma-ui/js/iconInput';
+import './figma-ui/js/disclosure';
